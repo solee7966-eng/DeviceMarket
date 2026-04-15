@@ -1,17 +1,25 @@
-# 국비 2팀 GitHub
+# DeviceMarket
 
-#Policy 
-### 1. Common.properties의 경우. 처음 Pull한 경우 이후 .ignore 제외 시켜 주세요.
-### 2. ** 개인 branch는 임의로 사용 하되, Main에 Push 할 경우, 반드시. 팀장에게 말한 후 승인을 기다려 주세요. **
-### 3. Commit Message 의 경우 개인 Branch에는 임의로 작성하되, Main Branch에 남길경우 아래와 같이 작성해주세요. 
-### 3-1. Update/Delete/Register _ Function _ 작성자 _ 일자  (간단한 내용)
-### 3-1(예시.)  손영대 -> 회원 가입을 만든경우. 
-###              => Register_회원가입_손영대_1226
-###             손영대 -> 회원 가입 버그 수정한 경우 
-###              => Update_회원가입_손영대_1226(아이디 유효성 검사 버그 수정) 
-### 4. webapp 아래 js / css 쪽 개인 function에 맞게( 예: MyMVC ) 작업 해주세요. 
-### 5. webapp.js 및 webapp.css에서 다른 개발자가 작성한 js 및 css는 건들지 말아주세요.
+## 프로젝트 소개
+JSP/Servlet 기반으로 구현한 휴대폰 쇼핑몰 웹 서비스입니다.  
+상품과 옵션(색상, 용량)을 분리하여 실제 쇼핑몰 형태의 기능을 구현했습니다.
 
+## 주요 기능
+- 상품 등록 / 수정 / 삭제
+- 상품 목록 및 상세 조회
+- 옵션 선택 (색상, 용량)
+- 옵션별 가격 및 재고 관리
 
+## 기술 스택
+- Java, JSP/Servlet
+- Oracle DB, JDBC
+- HTML, CSS, JavaScript, AJAX
+- Apache Tomcat
 
-#### 추가 정책 필요시 말해주세요
+## 구조
+MVC(Model2) 패턴 기반  
+Controller - DAO - DTO 계층 분리
+
+## 핵심 구현
+상품과 옵션을 분리 설계하여  
+하나의 상품에 여러 옵션을 유연하게 관리할 수 있도록 구현
