@@ -23,5 +23,3 @@ Controller - DAO - DTO 계층 분리
 ## 핵심 구현
 상품과 옵션을 분리 설계하여  
 하나의 상품에 여러 옵션을 유연하게 관리할 수 있도록 구현
-
-<img width="2562" height="4225" alt="image" src="https://github.com/user-attachments/assets/a2558966-d9ec-41dc-9ea4-8ca0d06f5674" />
