@@ -86,8 +86,8 @@
     </div>
 	
 	
-	<!-- 제품 정보를 ForEach를 사용해 card 형태로 나타내기 -->
 	<div class="row">
+		<!-- 제품 정보를 ForEach를 사용해 card 형태로 나타내기 -->
 		<c:forEach var="product" items="${productCardList}">
 			<!-- data- 를 이용하여 해당값을 js에서 사용할 수 있도록 추가해주기 -->
 			<div class="col-md-3 mb-4 product-item"

@@ -288,7 +288,7 @@ $(document).ready(function () {
                 data:{
                     "loginUserId":loginUserId, //회원아이디
                     "productOptionId": productOptionId, //옵션아이디
-                    "quantity":finalQuantity //🔥 보정된 수량 사용
+                    "quantity":finalQuantity //보정된 수량 사용
                 },
                 type: "post",
                 dataType:"json",

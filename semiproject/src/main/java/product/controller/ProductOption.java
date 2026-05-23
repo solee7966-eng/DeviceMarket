@@ -31,21 +31,20 @@ public class ProductOption extends AbstractController {
 			//제품정보 가져오기(제품테이블)
 			ProductDTO proDto = proDao.selectOne(productCode);
 
-			//제품코드에 대한 제품상세정보 가져오기(제품상세테이블)
-			ProductOptionDTO proOptionDto = proDao.selectOptionOne(productCode);
-			//System.out.println(proOptionDto.getTotalPrice());
-			
-			//제품코드에 따른 추가금을 가져오기(512GB만 추가금이 있으므로 그것만 가져오기
-			int plusPrice = proDao.selectOptionPlusPrice(productCode);
-			
 			//제품 코드에 따른 옵션들 모두 가져오기
 			List<ProductOptionDTO> proOptionList = proDao.selectAllOption(productCode);
-			request.setAttribute("proOptionList", proOptionList);
 
 			//제품의 추가 이미지 가져오기
 			List<String> plusProductImages = proDao.selectPlusImage(productCode);
-			
 
+			
+			//제품코드에 대한 제품상세정보 가져오기(제품상세테이블)
+			ProductOptionDTO proOptionDto = proDao.selectOptionOne(productCode);
+			
+			//제품코드에 따른 추가금을 가져오기
+			int plusPrice = proDao.selectOptionPlusPrice(productCode);
+
+			request.setAttribute("proOptionList", proOptionList);
 			request.setAttribute("proDto", proDto); //상품정보
 			request.setAttribute("proOptionDto", proOptionDto); //상품상세정보
 			request.setAttribute("plusPrice", plusPrice); //제품추가금

@@ -92,14 +92,14 @@ $(document).ready(function() {
         isDuplicateCheckName = false; //상품명 중복체크 거짓
 		isDefaultOptionCreated = false;
 		$('#duplicateCheckResult').html("");
-		$('#duplicateCheckResult2').html("");
 		$('#optionMatrixTable').html('<div class="matrix-empty"><i class="fas fa-info-circle"></i><p>저장용량과 색상을 선택 후 \'옵션 조합 추가\' 버튼을 클릭하세요</p></div>');
 		
     });
 
 	//===상품코드 중복확인 버튼 클릭 이벤트===//
     $('#checkDuplicateCodeBtn').click(function() {
-        
+        //중복코드 누르면 활성화 실행
+		enableTag();
 		
         const code = $('#productCode').val().trim();
         if (!code) {
@@ -117,9 +117,6 @@ $(document).ready(function() {
 
 	//상품코드 중복검사 실행하기(ajax 이용)
 	function checkDuplicateProductCode() { 
-		//중복코드 클릭하고 검사 진행하면 활성화
-		enableTag();
-		
 	    $('#checkDuplicateCodeBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i>확인 중...');
 	    setTimeout(function() {
 			$.ajax({
@@ -213,7 +210,7 @@ $(document).ready(function() {
 		}
         const codePattern = /^[A-Za-z0-9 ]+$/;
         if (!codePattern.test(name)) {
-            alert('상품명에 특수기호는 입력이 불가합니다.');
+            alert('상품명은 영문과 숫자만 입력이 가능합니다.');
             $('#productName').val("");
             return;
         }
@@ -232,8 +229,6 @@ $(document).ready(function() {
 				type:"post",
 				dataType:"json",
 				success:function(json){
-					//console.log("확인용 json:" ,json);
-					//alert(json.message);
 					const isDuplicate = json.isProductName;
 					showDuplicateResult2(isDuplicate);
 				},
@@ -706,7 +701,7 @@ $(document).ready(function() {
                 hasError = true;
                 return false;
             }
-
+			const optionCombinations = [];
             optionCombinations.push({
                 storage: storage,
                 color: color,
@@ -717,6 +712,7 @@ $(document).ready(function() {
 
         if (hasError) return;
 
+		
 		//상품 테이블 데이터
         const productData = {
             productCode: $('#productCode').val(),
@@ -724,7 +720,6 @@ $(document).ready(function() {
             brand: $('#brand').val(),
             description: $('#description').val(),
             basePrice: parseInt($('#basePrice').val()),
-            //imagePath: imagePath,
             salesStatus: '판매중'
         };
 		
@@ -796,8 +791,6 @@ $(document).ready(function() {
 			$.ajax({
 			    url: 'productRegisterNewPCodeEnd.hp', // 서버 API 주소
 			    method: 'POST',
-			    //contentType: 'application/json', //기존코드
-			    //data: JSON.stringify(registrationData), //기존코드
 			    data: formData,
 				processData:false,  // 파일 전송시 설정 
 				contentType:false,  // 파일 전송시 설정
@@ -838,8 +831,5 @@ $(document).ready(function() {
         uploadedFile = null;
 		isDefaultOptionCreated = false;
         disableTag();
-		
-		//화면 맨 위로 스크롤
-	    $('html, body').animate({ scrollTop: 0 }, 500);
     });
 });

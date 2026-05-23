@@ -80,7 +80,8 @@ public class ProductDAO_imple implements ProductDAO {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = " SELECT product_code, product_name, brand_name, product_desc, sale_status, image_path, price "
+			String sql = " SELECT product_code, product_name, brand_name, "
+						+" product_desc, sale_status, image_path, price "
 						+" FROM tbl_product "
 						+" WHERE product_code = ? ";
 			
@@ -171,7 +172,6 @@ public class ProductDAO_imple implements ProductDAO {
 			rs = pstmt.executeQuery();
 			
 			Map<String, ProductDTO> map = new LinkedHashMap<String, ProductDTO>();
-			
 			while(rs.next()) {
 				String productCode = rs.getString("product_code");
 				
@@ -421,7 +421,8 @@ public class ProductDAO_imple implements ProductDAO {
 		int n = 0;
 		try {
 			conn = ds.getConnection();
-			String sql = " insert into tbl_product(product_code, product_name, brand_name, product_desc, sale_status, image_path, price) "
+			String sql = " insert into tbl_product(product_code, product_name, brand_name, "
+						+" product_desc, sale_status, image_path, price) "
 						+" values(?, ?, ?, ?, ?, ?, ?) ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, proDto.getProductCode());
